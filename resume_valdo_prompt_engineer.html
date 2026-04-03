@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Владимир Савкин — Prompt Engineer / AI-редактор</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --surface2: #efecea;
+    --border: #e0dcd4;
+    --accent: #2a6b3c;
+    --accent-light: #d6edd9;
+    --accent2: #c45e1a;
+    --text: #1a1916;
+    --muted: #7a7570;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+  }
+
+  /* Header */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 56px;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .header-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+  }
+
+  .name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .role-badge {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    margin-top: 20px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+
+  .header-meta {
+    text-align: right;
+    padding-top: 8px;
+  }
+
+  .meta-item {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 2;
+    font-weight: 300;
+  }
+
+  .meta-item span {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* Intro */
+  .intro {
+    margin-bottom: 64px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .intro-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--text);
+    max-width: 680px;
+    border-left: 3px solid var(--accent);
+    padding-left: 24px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 56px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-num {
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Cases grid */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .case-card {
+    background: var(--surface);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+    border: 1px solid var(--border);
+  }
+
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--accent);
+    transition: height 0.3s ease;
+  }
+
+  .case-card:hover::before { height: 100%; }
+  .case-card:hover { background: #f0faf2; }
+
+  .case-tag {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .case-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .case-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .case-desc strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* Tools */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .tool-group {
+    background: var(--surface);
+    padding: 24px;
+    border: 1px solid var(--border);
+  }
+
+  .tool-group-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 14px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+
+  .tool-list {
+    list-style: none;
+  }
+
+  .tool-list li {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 2.2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+  }
+
+  .tool-list li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  .tool-list li span {
+    color: var(--text);
+  }
+
+  /* Answers */
+  .qa-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .qa-item {
+    background: var(--surface);
+    padding: 28px 32px;
+    border: 1px solid var(--border);
+  }
+
+  .qa-q {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .qa-q::before {
+    content: '?';
+    color: var(--accent);
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1;
+  }
+
+  .qa-a {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text);
+    padding-left: 32px;
+    font-weight: 400;
+  }
+
+  .qa-a em {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 56px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .stat-block {
+    background: var(--surface);
+    padding: 24px 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 72px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  .footer-left span { color: var(--text); }
+
+  .cta {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 14px 28px;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+    border-radius: 2px;
+  }
+
+  .cta:hover {
+    background: var(--accent2);
+    transform: translateY(-2px);
+  }
+
+  /* Highlight strip */
+  .highlight-strip {
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid #b6debb;
+    border-bottom: none;
+    padding: 18px 32px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hs-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .hs-sub {
+    font-size: 11px;
+    font-weight: 400;
+    font-family: 'DM Sans', sans-serif;
+    opacity: 0.7;
+    letter-spacing: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.3s; }
+  .section:nth-child(5) { animation-delay: 0.4s; }
+  .section:nth-child(6) { animation-delay: 0.5s; }
+
+  @media print {
+    body { background: white; }
+    :root { --bg: white; --surface: #fafafa; --border: #e0e0e0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div>
+      <div class="header-label">Кандидат на вакансию — Prompt Engineer / AI‑редактор</div>
+      <div class="name">Владимир <em>Савкин</em></div>
+      <div class="role-badge">AI Automation · Prompt Engineering · Content Systems</div>
+    </div>
+    <div class="header-meta">
+      <div class="meta-item">Локация <span>Астрахань / Remote</span></div>
+      <div class="meta-item">Формат <span>Удалённо / гибрид</span></div>
+      <div class="meta-item">Опыт с ИИ <span>3+ года</span></div>
+      <div class="meta-item">Статус <span>Рассматриваю оферы</span></div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <p class="intro-text">
+      Строю системы, в которых ИИ работает как часть команды — не заменяет людей, а убирает рутину и освобождает время на смысл. Внедряю, обучаю, автоматизирую.
+    </p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-block">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">года работы с генеративным ИИ</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">AI‑систем внедрено в продакшн</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">готовность к эксперименту</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">0</div>
+      <div class="stat-label">страха перед новыми моделями</div>
+    </div>
+  </div>
+
+  <!-- CASES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Реальные кейсы</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="cases-grid">
+
+      <div class="case-card">
+        <div class="case-tag">Автоматизация SMM</div>
+        <div class="case-title">Конвейер визуального контента для ГК «Хорошо»</div>
+        <div class="case-desc">
+          Построил полный пайплайн: <strong>промпты → Claude API → Figma MCP → Python</strong>. 
+          Автоматическое создание обложек для соцсетей, фотореалистичных рендеров жилых комплексов и анимации из статичных изображений. 
+          Отдел маркетинга перешёл от ручного дизайна к формированию технических заданий для системы.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-tag">AI‑ассистенты</div>
+        <div class="case-title">Виджеты автоматизации для КП «Ботаника»</div>
+        <div class="case-desc">
+          Разработал серию AI‑инструментов для бизнес-процессов: <strong>генерация коммерческих предложений, шаблоны для воронок продаж, отчёты</strong>. 
+          Каждый виджет — отдельный ассистент с обучением на корпоративных текстах и tone of voice бренда.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-tag">Контент‑системы</div>
+        <div class="case-title">Редакционная автоматизация в отделе маркетинга</div>
+        <div class="case-desc">
+          Перевёл процессы SMM-команды: <strong>контент‑планы, аналитика конкурентов, стратегии продвижения, воронки</strong> — с ручного режима на AI-генерацию. 
+          Команда формирует месседжи и контекст, модель производит финальный контент в стиле бренда.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-tag">Данные и аналитика</div>
+        <div class="case-title">Таблицы, сметы и рыночная аналитика</div>
+        <div class="case-desc">
+          Создал AI‑инструменты для финансовых процессов: <strong>сметы в Excel, бюджетирование, мониторинг конкурентного рынка недвижимости</strong>. 
+          Анализ данных с автоматической подготовкой отчётов и визуализаций.
+        </div>
+      </div>
+
+      <div class="case-card" style="grid-column: 1 / -1;">
+        <div class="case-tag">Продуктовая разработка</div>
+        <div class="case-title">Приложение и корпоративный сайт для ГК «Хорошо»</div>
+        <div class="case-desc">
+          Разработал <strong>мобильное приложение и корпоративный сайт</strong> для девелопера полного цикла. Проектирование архитектуры, UI/UX, интеграция с базой объектов. AI встроен на всех этапах: <strong>генерация контента, фотореалистичные рендеры ЖК, автоматизация обновления каталога</strong>. Контент-пайплайн сократил время подготовки материалов с нескольких дней до нескольких часов.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Инструментарий</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-group">
+        <div class="tool-group-label">Языковые модели</div>
+        <ul class="tool-list">
+          <li><span>Claude (Anthropic)</span></li>
+          <li><span>ChatGPT / GPT‑4o</span></li>
+          <li><span>Gemini</span></li>
+          <li><span>Grok</span></li>
+          <li><span>Mistral / локальные LLM</span></li>
+        </ul>
+      </div>
+      <div class="tool-group">
+        <div class="tool-group-label">Изображение и видео</div>
+        <ul class="tool-list">
+          <li><span>Midjourney</span></li>
+          <li><span>Stable Diffusion / ComfyUI</span></li>
+          <li><span>Runway / Kling</span></li>
+          <li><span>Ideogram</span></li>
+          <li><span>Figma + MCP‑интеграция</span></li>
+        </ul>
+      </div>
+      <div class="tool-group">
+        <div class="tool-group-label">Автоматизация и код</div>
+        <ul class="tool-list">
+          <li><span>n8n / Make</span></li>
+          <li><span>Python + API</span></li>
+          <li><span>Claude Code</span></li>
+          <li><span>GSAP / React</span></li>
+          <li><span>Notion + MCP</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- QA BLOCK -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Ответы на фильтр‑вопросы</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="highlight-strip">
+      <span class="hs-text">Вы спросили — отвечаю честно и по делу</span>
+      <span class="hs-sub">фильтр‑вопросы из вакансии</span>
+    </div>
+
+    <div class="qa-list">
+
+      <div class="qa-item">
+        <div class="qa-q">Опишите ваш опыт работы с нейросетями</div>
+        <div class="qa-a">
+          Работаю с генеративным ИИ с момента появления первых доступных моделей. Прошёл путь от «попробовать ChatGPT» до построения <em>продакшн‑систем</em>, где ИИ встроен в ежедневные рабочие процессы нескольких компаний. Пишу промпты, отлаживаю, обучаю на корпоративных данных, интегрирую через API. Слежу за рынком моделей и первым тестирую новые релизы.
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">Есть ли кейсы создания AI‑ассистентов или автоматизации?</div>
+        <div class="qa-a">
+          Да, и это основная часть моей практики. Создавал <em>AI‑виджеты для бизнеса</em> (КП «Ботаника»), <em>систему генерации визуального контента</em> (ГК «Хорошо»), <em>редакционный конвейер</em> в отделе маркетинга. Отдельно — инструменты для аналитики рынка и финансового планирования. Все системы работают в реальных командах, а не в демо‑режиме.
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">Какие инструменты ИИ используете чаще всего?</div>
+        <div class="qa-a">
+          В работе с текстом — <em>Claude</em> (наиболее точный для длинных и сложных задач), GPT‑4o для быстрых итераций. Для изображений — Midjourney + Stable Diffusion в зависимости от задачи. Для автоматизации — Python + API + n8n. Для агентских задач — <em>Claude Code</em>. Инструментарий меняется вместе с рынком.
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">Как бы вы построили систему генерации текстов для соцсетей публичного человека?</div>
+        <div class="qa-a">
+          <em>Шаг 1:</em> Собрать массив аутентичных текстов — посты, интервью, публичные речи. Выявить лексику, ритм, любимые конструкции, темы. <em>Шаг 2:</em> Создать style guide + system prompt с детальным описанием голоса, примерами «так» и «не так». <em>Шаг 3:</em> Построить рабочий процесс: команда формирует месседж + контекст + цель поста, система генерирует 3–5 вариантов. <em>Шаг 4:</em> Итеративная доработка — каждый одобренный пост улучшает следующий. Финальный контроль всегда за человеком.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <div>Владимир Савкин &nbsp;·&nbsp; <span>Предприниматель, Астрахань</span></div>
+      <div>Основатель <span>VQA Agency</span> &nbsp;·&nbsp; ГК <span>«Хорошо»</span></div>
+      <div style="margin-top:8px; color: var(--muted)">Готов к тестовому заданию</div>
+    </div>
+    <a href="mailto:hello@vqa.agency" class="cta">Связаться →</a>
+  </div>
+
+</div>
+</body>
+</html>
