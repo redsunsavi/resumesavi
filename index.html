@@ -43,7 +43,7 @@
     gap: 40px;
     padding-bottom: 48px;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 56px;
+    margin-bottom: 40px;
     animation: fadeUp 0.8s ease forwards;
   }
 
@@ -59,7 +59,7 @@
 
   .name {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(48px, 7vw, 72px);
+    font-size: clamp(40px, 7vw, 72px);
     font-weight: 400;
     line-height: 1;
     color: var(--text);
@@ -102,9 +102,26 @@
     font-weight: 500;
   }
 
+  .about-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text);
+    font-weight: 300;
+  }
+
   /* Intro */
   .intro {
-    margin-bottom: 64px;
+    margin-bottom: 48px;
     animation: fadeUp 0.8s 0.15s ease both;
   }
 
@@ -117,6 +134,38 @@
     max-width: 680px;
     border-left: 3px solid var(--accent);
     padding-left: 24px;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 56px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .stat-block {
+    background: var(--surface);
+    padding: 24px 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 400;
   }
 
   /* Section */
@@ -190,6 +239,8 @@
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
   }
 
   .case-title {
@@ -212,6 +263,23 @@
     color: var(--text);
     font-weight: 500;
   }
+
+  .case-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 14px;
+    font-size: 11px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--accent-light);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+    font-family: 'Syne', sans-serif;
+  }
+  .case-link + .case-link { margin-left: 16px; }
+  .case-link:hover { border-color: var(--accent); }
 
   /* Tools */
   .tools-grid {
@@ -236,9 +304,7 @@
     font-weight: 700;
   }
 
-  .tool-list {
-    list-style: none;
-  }
+  .tool-list { list-style: none; }
 
   .tool-list li {
     font-size: 13px;
@@ -257,11 +323,9 @@
     flex-shrink: 0;
   }
 
-  .tool-list li span {
-    color: var(--text);
-  }
+  .tool-list li span { color: var(--text); }
 
-  /* Answers */
+  /* QA */
   .qa-list {
     display: flex;
     flex-direction: column;
@@ -283,6 +347,8 @@
     display: flex;
     gap: 12px;
     align-items: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
   }
 
   .qa-q::before {
@@ -306,76 +372,6 @@
     color: var(--accent);
     font-style: normal;
     font-weight: 600;
-  }
-
-  /* Stats row */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    margin-bottom: 56px;
-    animation: fadeUp 0.8s 0.1s ease both;
-  }
-
-  .stat-block {
-    background: var(--surface);
-    padding: 24px 20px;
-    text-align: center;
-    border: 1px solid var(--border);
-  }
-
-  .stat-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 42px;
-    font-weight: 400;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat-label {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.5;
-    font-weight: 400;
-  }
-
-  /* Footer */
-  .footer {
-    margin-top: 72px;
-    padding-top: 32px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-left {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 2;
-  }
-
-  .footer-left span { color: var(--text); }
-
-  .cta {
-    background: var(--accent);
-    color: #fff;
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 14px 28px;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-block;
-    transition: background 0.2s, transform 0.2s;
-    border-radius: 2px;
-  }
-
-  .cta:hover {
-    background: var(--accent2);
-    transform: translateY(-2px);
   }
 
   /* Highlight strip */
@@ -403,7 +399,44 @@
     font-weight: 400;
     font-family: 'DM Sans', sans-serif;
     opacity: 0.7;
-    letter-spacing: 0;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 72px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  .footer-left span { color: var(--text); font-weight: 500; }
+
+  .cta {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 14px 28px;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+    border-radius: 2px;
+  }
+
+  .cta:hover {
+    background: var(--accent2);
+    transform: translateY(-2px);
   }
 
   @keyframes fadeUp {
@@ -411,21 +444,20 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .section:nth-child(3) { animation-delay: 0.2s; }
-  .section:nth-child(4) { animation-delay: 0.3s; }
-  .section:nth-child(5) { animation-delay: 0.4s; }
-  .section:nth-child(6) { animation-delay: 0.5s; }
+  .section:nth-child(4) { animation-delay: 0.2s; }
+  .section:nth-child(5) { animation-delay: 0.3s; }
+  .section:nth-child(6) { animation-delay: 0.4s; }
+  .section:nth-child(7) { animation-delay: 0.5s; }
 
+  /* Mobile */
   @media (max-width: 640px) {
-    .page {
-      padding: 32px 20px 60px;
-    }
+    .page { padding: 32px 20px 60px; }
 
     .header {
       grid-template-columns: 1fr;
       gap: 24px;
       padding-bottom: 32px;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
     }
 
     .header-meta {
@@ -435,69 +467,32 @@
       gap: 4px 16px;
     }
 
-    .name {
-      font-size: 42px;
-      line-height: 1.05;
-      word-break: keep-all;
-    }
+    .name { font-size: 40px; word-break: keep-all; }
 
-    .role-badge {
-      font-size: 9px;
-      letter-spacing: 0.08em;
-      margin-top: 14px;
-    }
+    .role-badge { font-size: 9px; letter-spacing: 0.07em; margin-top: 14px; }
 
-    .intro-text {
-      font-size: 17px;
-      padding-left: 16px;
-    }
-
-    .intro {
-      margin-bottom: 40px;
-    }
+    .intro-text { font-size: 17px; padding-left: 16px; }
+    .intro { margin-bottom: 36px; }
 
     .stats-row {
       grid-template-columns: repeat(2, 1fr);
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
-    .stat-num {
-      font-size: 32px;
-    }
+    .stat-num { font-size: 32px; }
 
-    .cases-grid {
-      grid-template-columns: 1fr;
-    }
+    .cases-grid { grid-template-columns: 1fr; }
 
-    .case-card[style*="grid-column"] {
-      grid-column: 1 !important;
-    }
+    .case-card[style*="grid-column"] { grid-column: 1 !important; }
 
-    .tools-grid {
-      grid-template-columns: 1fr;
-    }
+    .tools-grid { grid-template-columns: 1fr; }
 
-    .section {
-      margin-bottom: 40px;
-    }
+    .section { margin-bottom: 40px; }
+    .section-header { margin-bottom: 20px; }
 
-    .section-header {
-      margin-bottom: 20px;
-    }
-
-    .qa-item {
-      padding: 20px;
-    }
-
-    .qa-a {
-      padding-left: 0;
-      font-size: 13px;
-    }
-
-    .qa-q {
-      font-size: 9px;
-      flex-wrap: wrap;
-    }
+    .qa-item { padding: 20px; }
+    .qa-a { padding-left: 0; font-size: 13px; }
+    .qa-q { font-size: 9px; flex-wrap: wrap; }
 
     .highlight-strip {
       flex-direction: column;
@@ -506,6 +501,8 @@
       padding: 16px 20px;
     }
 
+    .hs-sub { display: none; }
+
     .footer {
       flex-direction: column;
       align-items: flex-start;
@@ -513,17 +510,10 @@
       margin-top: 48px;
     }
 
-    .hs-sub {
-      display: none;
-    }
+    .case-card { padding: 20px; }
+    .tool-group { padding: 20px; }
 
-    .case-card {
-      padding: 20px;
-    }
-
-    .tool-group {
-      padding: 20px;
-    }
+    .case-link + .case-link { margin-left: 0; display: block; }
   }
 
   @media print {
@@ -538,7 +528,7 @@
   <!-- HEADER -->
   <header class="header">
     <div>
-      <div class="header-label">Кандидат на вакансию — Prompt Engineer / AI‑редактор</div>
+      <div class="header-label">Кандидат на вакансию — Prompt Engineer / AI-редактор</div>
       <div class="name">Владимир <em>Савкин</em></div>
       <div class="role-badge">AI Automation · Prompt Engineering · Content Systems</div>
     </div>
@@ -549,6 +539,12 @@
       <div class="meta-item">Статус <span>Рассматриваю оферы</span></div>
     </div>
   </header>
+
+  <!-- ABOUT -->
+  <div class="about-block">
+    <div class="about-label">О себе</div>
+    <p>33 года. Окончил Астраханский государственный университет, факультет бизнеса и экономики. Путь выбрал сам — SMM, маркетинг, контекстная реклама. Везде самоучка: убеждён, что настоящее понимание приходит только через практику, а не через курсы. Именно эта привычка — сначала сделать, потом объяснить — привела к тому, что AI-инструменты в моих проектах не демонстрируются на слайдах, а работают в реальных продуктах каждый день.</p>
+  </div>
 
   <!-- INTRO -->
   <div class="intro">
@@ -565,7 +561,7 @@
     </div>
     <div class="stat-block">
       <div class="stat-num">5+</div>
-      <div class="stat-label">AI‑систем внедрено в продакшн</div>
+      <div class="stat-label">AI-систем внедрено в продакшн</div>
     </div>
     <div class="stat-block">
       <div class="stat-num">∞</div>
@@ -591,26 +587,27 @@
         <div class="case-tag">Автоматизация SMM</div>
         <div class="case-title">Конвейер визуального контента для ГК «Хорошо»</div>
         <div class="case-desc">
-          Построил полный пайплайн: <strong>промпты → Claude API → Figma MCP → Python</strong>. 
-          Автоматическое создание обложек для соцсетей, фотореалистичных рендеров жилых комплексов и анимации из статичных изображений. 
-          Отдел маркетинга перешёл от ручного дизайна к формированию технических заданий для системы.
+          Построил полный пайплайн: <strong>промпты → Claude API → Figma MCP → Python</strong>.
+          Автоматическое создание обложек, фотореалистичных рендеров ЖК и анимации из статичных изображений.
+          Сложность — в том, чтобы система воспроизводила фирменный стиль без участия дизайнера: потребовалась многоуровневая система промптов с контролем консистентности на каждом шаге. Отдел маркетинга перешёл от ручного дизайна к постановке задач системе.
         </div>
       </div>
 
       <div class="case-card">
-        <div class="case-tag">AI‑ассистенты</div>
-        <div class="case-title">Виджеты автоматизации для КП «Ботаника»</div>
+        <div class="case-tag">AI-ассистенты · Веб-виджеты</div>
+        <div class="case-title">Виджеты для КП «Ботаника»</div>
         <div class="case-desc">
-          Разработал серию AI‑инструментов для бизнес-процессов: <strong>генерация коммерческих предложений, шаблоны для воронок продаж, отчёты</strong>. 
-          Каждый виджет — отдельный ассистент с обучением на корпоративных текстах и tone of voice бренда.
+          Разработал два самостоятельных веб-продукта: виджет уникальности и виджет бронирования. Каждый — отдельный проект с собственной логикой, UI и интеграцией. Сложность была не только техническая: нужно было создать инструмент, которым менеджеры пользуются ежедневно без обучения — то есть по-настоящему интуитивный в контексте конкретного бизнес-процесса.
         </div>
+        <a class="case-link" href="http://xn----7sbabzb6bgadhfhe1bzb.xn--p1ai/" target="_blank">↗ Виджет уникальности</a>
+        <a class="case-link" href="https://cx242489.tw1.ru/" target="_blank">↗ Виджет бронирования</a>
       </div>
 
       <div class="case-card">
-        <div class="case-tag">Контент‑системы</div>
+        <div class="case-tag">Контент-системы</div>
         <div class="case-title">Редакционная автоматизация в отделе маркетинга</div>
         <div class="case-desc">
-          Перевёл процессы SMM-команды: <strong>контент‑планы, аналитика конкурентов, стратегии продвижения, воронки</strong> — с ручного режима на AI-генерацию. 
+          Перевёл процессы SMM-команды: <strong>контент-планы, аналитика конкурентов, стратегии продвижения, воронки</strong> — с ручного режима на AI-генерацию.
           Команда формирует месседжи и контекст, модель производит финальный контент в стиле бренда.
         </div>
       </div>
@@ -619,17 +616,19 @@
         <div class="case-tag">Данные и аналитика</div>
         <div class="case-title">Таблицы, сметы и рыночная аналитика</div>
         <div class="case-desc">
-          Создал AI‑инструменты для финансовых процессов: <strong>сметы в Excel, бюджетирование, мониторинг конкурентного рынка недвижимости</strong>. 
+          Создал AI-инструменты для финансовых процессов: <strong>сметы в Excel, бюджетирование, мониторинг конкурентного рынка недвижимости</strong>.
           Анализ данных с автоматической подготовкой отчётов и визуализаций.
         </div>
       </div>
 
       <div class="case-card" style="grid-column: 1 / -1;">
-        <div class="case-tag">Продуктовая разработка</div>
-        <div class="case-title">Приложение и корпоративный сайт для ГК «Хорошо»</div>
+        <div class="case-tag">Продуктовая разработка · Мобильное приложение</div>
+        <div class="case-title">Приложение, сайт и Telegram-бот для ГК «Хорошо»</div>
         <div class="case-desc">
-          Разработал <strong>мобильное приложение и корпоративный сайт</strong> для девелопера полного цикла. Проектирование архитектуры, UI/UX, интеграция с базой объектов. AI встроен на всех этапах: <strong>генерация контента, фотореалистичные рендеры ЖК, автоматизация обновления каталога</strong>. Контент-пайплайн сократил время подготовки материалов с нескольких дней до нескольких часов.
+          Разработал <strong>мобильное приложение, корпоративный сайт</strong> и Telegram-бота для девелопера полного цикла. Проектирование архитектуры, UI/UX, интеграция с базой объектов. AI встроен на всех этапах: <strong>генерация контента, фотореалистичные рендеры ЖК, автоматизация каталога</strong>. Наибольшая сложность — синхронизация данных между тремя платформами в реальном времени без дублирования ручного труда. Приложение работает, сейчас идёт <strong>миграция в экосистему MAX</strong>.
         </div>
+        <a class="case-link" href="https://horoshogk.ru/" target="_blank">↗ Сайт ГК Хорошо</a>
+        <a class="case-link" href="https://t.me/repcrew_bot" target="_blank">↗ @repcrew_bot в Telegram</a>
       </div>
 
     </div>
@@ -648,7 +647,7 @@
         <div class="tool-group-label">Языковые модели</div>
         <ul class="tool-list">
           <li><span>Claude (Anthropic)</span></li>
-          <li><span>ChatGPT / GPT‑4o</span></li>
+          <li><span>ChatGPT / GPT-4o</span></li>
           <li><span>Gemini</span></li>
           <li><span>Grok</span></li>
           <li><span>Mistral / локальные LLM</span></li>
@@ -661,7 +660,7 @@
           <li><span>Stable Diffusion / ComfyUI</span></li>
           <li><span>Runway / Kling</span></li>
           <li><span>Ideogram</span></li>
-          <li><span>Figma + MCP‑интеграция</span></li>
+          <li><span>Figma + MCP-интеграция</span></li>
         </ul>
       </div>
       <div class="tool-group">
@@ -677,17 +676,17 @@
     </div>
   </div>
 
-  <!-- QA BLOCK -->
+  <!-- QA -->
   <div class="section">
     <div class="section-header">
       <span class="section-num">03</span>
-      <span class="section-title">Ответы на фильтр‑вопросы</span>
+      <span class="section-title">Ответы на фильтр-вопросы</span>
       <div class="section-line"></div>
     </div>
 
     <div class="highlight-strip">
       <span class="hs-text">Вы спросили — отвечаю честно и по делу</span>
-      <span class="hs-sub">фильтр‑вопросы из вакансии</span>
+      <span class="hs-sub">фильтр-вопросы из вакансии</span>
     </div>
 
     <div class="qa-list">
@@ -695,21 +694,21 @@
       <div class="qa-item">
         <div class="qa-q">Опишите ваш опыт работы с нейросетями</div>
         <div class="qa-a">
-          Работаю с генеративным ИИ с момента появления первых доступных моделей. Прошёл путь от «попробовать ChatGPT» до построения <em>продакшн‑систем</em>, где ИИ встроен в ежедневные рабочие процессы нескольких компаний. Пишу промпты, отлаживаю, обучаю на корпоративных данных, интегрирую через API. Слежу за рынком моделей и первым тестирую новые релизы.
+          Работаю с генеративным ИИ с момента появления первых доступных моделей. Прошёл путь от «попробовать ChatGPT» до построения <em>продакшн-систем</em>, где ИИ встроен в ежедневные рабочие процессы нескольких компаний. Пишу промпты, отлаживаю, обучаю на корпоративных данных, интегрирую через API. Слежу за рынком моделей и первым тестирую новые релизы.
         </div>
       </div>
 
       <div class="qa-item">
-        <div class="qa-q">Есть ли кейсы создания AI‑ассистентов или автоматизации?</div>
+        <div class="qa-q">Есть ли кейсы создания AI-ассистентов или автоматизации?</div>
         <div class="qa-a">
-          Да, и это основная часть моей практики. Создавал <em>AI‑виджеты для бизнеса</em> (КП «Ботаника»), <em>систему генерации визуального контента</em> (ГК «Хорошо»), <em>редакционный конвейер</em> в отделе маркетинга. Отдельно — инструменты для аналитики рынка и финансового планирования. Все системы работают в реальных командах, а не в демо‑режиме.
+          Да, и это основная часть моей практики. Создавал <em>AI-виджеты для бизнеса</em> (КП «Ботаника»), <em>систему генерации визуального контента</em> (ГК «Хорошо»), <em>редакционный конвейер</em> в отделе маркетинга. Отдельно — инструменты для аналитики рынка и финансового планирования. Все системы работают в реальных командах, а не в демо-режиме.
         </div>
       </div>
 
       <div class="qa-item">
         <div class="qa-q">Какие инструменты ИИ используете чаще всего?</div>
         <div class="qa-a">
-          В работе с текстом — <em>Claude</em> (наиболее точный для длинных и сложных задач), GPT‑4o для быстрых итераций. Для изображений — Midjourney + Stable Diffusion в зависимости от задачи. Для автоматизации — Python + API + n8n. Для агентских задач — <em>Claude Code</em>. Инструментарий меняется вместе с рынком.
+          В работе с текстом — <em>Claude</em> (наиболее точный для длинных и сложных задач), GPT-4o для быстрых итераций. Для изображений — Midjourney + Stable Diffusion в зависимости от задачи. Для автоматизации — Python + API + n8n. Для агентских задач — <em>Claude Code</em>. Инструментарий меняется вместе с рынком.
         </div>
       </div>
 
@@ -728,6 +727,11 @@
     <div class="footer-left">
       <div>Владимир Савкин &nbsp;·&nbsp; <span>Предприниматель, Астрахань</span></div>
       <div>Основатель <span>VQA Agency</span> &nbsp;·&nbsp; ГК <span>«Хорошо»</span></div>
-      <div style="margin-top:8px; color: var(--muted)">Готов к тестовому заданию</div>
+      <div style="margin-top:8px;"><a href="tel:+79275812726" style="color:var(--accent);font-weight:600;text-decoration:none;">+7 927 581-27-26</a></div>
     </div>
-    <a href="/cdn-cgi/l/email-protection#5c34393030331c2a2d3d723d3b39323f25" class="cta">Связаться �
+    <a href="tel:+79275812726" class="cta">Позвонить →</a>
+  </div>
+
+</div>
+</body>
+</html>
