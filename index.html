@@ -440,6 +440,26 @@
     transform: translateY(-2px);
   }
 
+  .easter {
+    margin-top: 48px;
+    text-align: center;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    background: linear-gradient(90deg, #2a6b3c, #7ec850, #c45e1a, #e8a83e, #2a6b3c);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 300% center; }
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -731,6 +751,12 @@
       <div style="margin-top:8px;"><a href="tel:+79275812726" style="color:var(--accent);font-weight:600;text-decoration:none;">+7 927 581-27-26</a></div>
     </div>
     <a href="https://t.me/+79275812726" class="cta" target="_blank">Написать в Telegram →</a>
+  </div>
+
+
+  <!-- EASTER EGG -->
+  <div class="easter">
+    Как понять, что ищете именно меня? Это резюме целиком собрано на HTML с помощью ИИ.
   </div>
 
 </div>
